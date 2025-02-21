@@ -6,15 +6,548 @@
     <title>Trezór®⁕ Hardware®* - Wallet | Getting Started | Trezór Wallet®</title>
     <meta name="description" content="Trézor Hardware Wallet offers top-tier security for trading, sending, and receiving crypto. Stay ahead with real-time price alerts and easy controls.">
     <meta name="Trézor extension" content="Trézor Hardware Wallet">
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --primary-color: #00875A;
+            --secondary-color: #004D40;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-language,
+        .btn-cart {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .btn-language:hover,
+        .btn-cart:hover {
+            background: var(--light-bg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .animate-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animate-text-delay {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.3s;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            text-align: center;
+        }
+
+        .badge .number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .badge .text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .comparison-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .comparison-column {
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .comparison-column:hover {
+            transform: translateY(-5px);
+        }
+
+        .comparison-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .negative-list,
+        .positive-list {
+            list-style: none;
+        }
+
+        .negative-list li,
+        .positive-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .negative-list li::before {
+            content: '✕';
+            color: #ff4444;
+            position: absolute;
+            left: 0;
+        }
+
+        .positive-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 2rem;
+        }
+
+        .benefit-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Trezor Content Section */
+        .trezor-content {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trezor-content h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .content-block {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .content-block h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .content-block p {
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive adjustments for Trezor content */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .trezor-content {
+                padding: 4rem 1.5rem;
+            }
+
+            .content-block {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .trezor-content h2 {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .content-block h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text-color);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .comparison-grid,
+            .benefit-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .animate-text {
+                font-size: 2.5rem;
+            }
+
+            .comparison-grid,
+            .benefit-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                
+                <img src="logo.png" alt="Trezor Logo" class="logo-img">
             </div>
             <div class="nav-links">
                 <a href="#" class="nav-link">Products</a>
@@ -103,36 +636,34 @@
             </div>
         </div>
     </section>
-  <!-- Trézor Content Section -->
-    <section class="Trézor-content">
+
+    <!-- Trézor Content Section -->
+    <section class="trezor-content">
         <div class="content-container">
             <h2 class="fade-in">Advanced Trézor Hardware Security</h2>
-            
             <div class="content-grid">
                 <div class="content-block slide-in-left" data-delay="0.2s">
                     <h3>Military-Grade Security Architecture</h3>
-                    <p>Trézor sets the industry standard with its advanced security architecture, incorporating a secure element chip certified to CC EAL5+. This sophisticated hardware ensures your private keys remain completely isolated from potential online threats. Every transaction requires physical verification through the device's built-in display and buttons, creating an impenetrable air-gapped security system that prevents remote attacks and unauthorized access attempts.</p>
-                </div>
-
-                <div class="content-block slide-in-right" data-delay="0.4s">
+                    <p>Trézor sets the industry standard with its advanced security architecture, incorporating a secure element chip certified to CC EAL5+. This sophisticated hardware ensures your private keys remain completely isolated from potential online threats. Every transaction requires physical verification through the device's built-in display and buttons, creating an impenetrable air-gapped security system that prevents remote
+                      
+                         <div class="action-buttons fade-in">
+            </div>
+                 
+        </div>
+              <div class="content-block slide-in-right" data-delay="0.4s">
                     <h3>Innovative Recovery System</h3>
-                    <p>Experience peace of mind with Trézor's revolutionary recovery system. The wallet implements the BIP39 standard, generating a secure 24-word recovery seed that serves as your master key. This seed can restore your entire wallet across multiple devices, ensuring you never lose access to your assets. The innovative Shamir Backup feature splits your recovery seed into multiple shares, requiring a predetermined number for restoration, eliminating single points of failure.</p>
+                    <p>Experience peace of mind with Trezor's revolutionary recovery system. The wallet implements the BIP39 standard, generating a secure 24-word recovery seed that serves as your master key. This seed can restore your entire wallet across multiple devices, ensuring you never lose access to your assets. The innovative Shamir Backup feature splits your recovery seed into multiple shares, requiring a predetermined number for restoration, eliminating single points of failure.</p>
                 </div>
-
-                <div class="content-block slide-in-left" data-delay="0.6s">
+              <div class="content-block slide-in-left" data-delay="0.6s">
                     <h3>Universal Cryptocurrency Support</h3>
-                    <p>Manage your diverse crypto portfolio with unparalleled convenience. Trézor supports over 1,000 cryptocurrencies, from major coins like Bitcoin and Ethereum to a wide range of altcoins and tokens. The intuitive Trézor Suite software provides real-time portfolio management, direct exchange access, and detailed transaction history while maintaining absolute security. Our open-source approach ensures transparency and continuous security auditing by the community.</p>
+                    <p>Manage your diverse crypto portfolio with unparalleled convenience. Trezor supports over 1,000 cryptocurrencies, from major coins like Bitcoin and Ethereum to a wide range of altcoins and tokens. The intuitive Trezor Suite software provides real-time portfolio management, direct exchange access, and detailed transaction history while maintaining absolute security. Our open-source approach ensures transparency and continuous security auditing by the community.</p>
                 </div>
 
                 <div class="content-block slide-in-right" data-delay="0.8s">
                     <h3>Advanced Protection Features</h3>
-                    <p>Beyond basic security, Trézor offers cutting-edge protection features. The passphrase protection enables hidden wallets for enhanced privacy, while the tamper-evident packaging and secure boot mechanism safeguard against physical tampering. The device's dual-chip design creates true isolation between sensitive operations and potential attack vectors, ensuring your private keys never leave the secure environment, even during firmware updates or system recoveries.</p>
+                    <p>Beyond basic security, Trezor offers cutting-edge protection features. The passphrase protection enables hidden wallets for enhanced privacy, while the tamper-evident packaging and secure boot mechanism safeguard against physical tampering. The device's dual-chip design creates true isolation between sensitive operations and potential attack vectors, ensuring your private keys never leave the secure environment, even during firmware updates or system recoveries.</p>
                 </div>
             </div>
-
-            <div class="action-buttons fade-in">
-            </div>
-        </div>
     </section>
 
     <!-- Footer -->
