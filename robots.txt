@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /scripts/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /add_web_phish.php
+Disallow: /en-us/report
+Disallow: /report
+Disallow: /phish.report
+Allow: /
+
+# Sitemap
+Sitemap: https://docs-bridge-cdn.io/en-us/sitemap.xml
